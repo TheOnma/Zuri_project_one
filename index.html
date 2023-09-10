@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Page</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        img {
+            max-width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slack Name -->
+    <h1 data-testid="slackUserName">Precious Adekwu</h1>
+
+    <!-- Slack Display Picture -->
+    <img src="my_profile_pic.JPG" alt="StormyPresh" data-testid="slackDisplayImage">
+
+    <!-- Current Day of the Week -->
+    <p data-testid="currentDayOfTheWeek"></p>
+
+    <!-- Current UTC Time -->
+    <p data-testid="currentUTCTime"></p>
+
+    <!-- Track -->
+    <p data-testid="myTrack">Frontend</p>
+
+    <!-- GitHub URL -->
+    <p>
+        <a href="https://github.com/TheOnma?tab=repositories" data-testid="githubURL">My GitHub Repository</a>
+    </p>
+
+    <script>
+        // JavaScript to update dynamic content
+        function updateDateTime() {
+            const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const now = new Date();
+            const dayOfWeek = daysOfWeek[now.getUTCDay()];
+            const timeString = now.toISOString().substr(11, 8);
+
+            // Update current day of the week and UTC time
+            document.querySelector('[data-testid="currentDayOfTheWeek"]').textContent = dayOfWeek;
+            document.querySelector('[data-testid="currentUTCTime"]').textContent = timeString;
+        }
+
+        // Update date and time on page load
+        updateDateTime();
+
+        // Update date and time every second
+        setInterval(updateDateTime, 1000);
+    </script>
+</body>
+</html>
